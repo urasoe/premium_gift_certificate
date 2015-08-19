@@ -267,11 +267,14 @@ window.onload = function() {
 //  map.setCenter(new LatLng(35.95655,136.18447));
 //  map.setZoom(11);
      
+    loadData("restaurant", { iconfn: "icon_restaurant.png", fit: true });
     loadData("super", { iconfn: "icon_super.png", fit: true });
+/*
     loadData("event", { iconfn: "icon_event.png" });
     loadData("shisetsu", { iconfn: "icon_facility.png" });
     loadData("wakasaji", { iconfn: "icon_wakasaji.png" });
     loadData("kensoba", { iconfn: "icon_soba.png" });
+*/
  
     var resizeIcon = function(name, resize) {
         if (map.infowindow)
@@ -305,9 +308,13 @@ window.onload = function() {
                 map.fitBounds(bounds);
         }
     };
+    get("btnrestaurant").onclick = function() {
+        resizeIcon("restaurant", true);
+    };
     get("btnsuper").onclick = function() {
         resizeIcon("super", true);
     };
+/*
     get("btnevent").onclick = function() {
         resizeIcon("event", true);
     };
@@ -317,6 +324,7 @@ window.onload = function() {
     get("btnwakasaji").onclick = function() {
         resizeIcon("wakasaji", true);
     };
+*/
     var watchid = null;
     get("btngps").onclick = function() {
         /*
@@ -699,10 +707,13 @@ body {
 <div id="main">
     <div id="map"></div>
     <div class="btns">
+        <img src="img/icon_restaurant.png" id="btnrestaurant">
         <img src="img/icon_super.png" id="btnsuper">
+<!--
         <img src="img/icon_event.png" id="btnevent">
         <img src="img/icon_soba.png" id="btnsoba">
         <img src="img/icon_wakasaji.png" id="btnwakasaji">
+-->
         <img src="img/icon_gps.png" id="btngps">
         <img src="img/icon_help.png" id="btnhelp">
     </div>
@@ -716,25 +727,23 @@ body {
  
 <div id=help>
 <span style="position:absolute;top:0px;right:4px;color:gray;font-weight:bold;font-size:170%;cursor:pointer"></span>
-<b>"福井オープンイベントナビ"の使い方</b><br>
+<b>"浦添市プレミアム商品券利用可能店舗マップ"の使い方</b><br>
 <br>
-福井県や県内市町が提供するイベント情報を地図や現在位置から気軽に見ることができます。<br>
+浦添市プレミアム商品券を利用できる店舗を見ることができます。<br>
 地図上や、画面下にあるアイコンをタップまたはクリックしてご利用ください。<br>
 <br>
 各アイコンの機能説明<br>
 <table class=helptbl>
-<tr><td><img class=helpicon src=img/icon_event.png></td><td>イベントを表すアイコンです
-選択することでイベント全体を表示します<r></td></tr>
-<tr><td><img class=helpicon src=img/icon_soba.png></td><td>「おいしい福井県産そば使用認証店および県外での越前おろしそば提供店」を表します<br>
-選択することで認定店全体を表示します（<a href=http://www.pref.fukui.jp/doc/nougyou/shop.html target=_blank>詳細はこちら</a>）</td></tr>
-<tr><td><img class=helpicon src=img/icon_wakasaji.png></td><td>「若狭路ご膳」新鮮な海の幸など、嶺南地域ならではの豊かな食材を使った昼食メニューを提供するお店を表します<br>
-選択することで提供店全体を表示します（<a href=http://www.pref.fukui.lg.jp/doc/furusato/wakasajigozen.html target=_blank>詳細はこちら</a>）</td></tr>
-<tr><td><img class=helpicon src=img/icon_facility.png></td><td>公共施設を表します</td></tr>
+<tr><td><img class=helpicon src=img/icon_restaurant.png></td><td>飲食店を表示します<r></td></tr>
+<tr><td><img class=helpicon src=img/icon_super.png></td><td>スーパー、コンビニ、飲食料品展を表示します<r></td></tr>
 <tr><td><img class=helpicon src=img/icon_gps.png></td><td>地図を現在位置を中心に表示します<br>※GPSなどをONにしてご利用ください</td></tr>
 <tr><td><img class=helpicon src=img/icon_help.png></td><td>このヘルプを表示します</td></tr>
 </table>
 <br>
-福井オープンデータナビは、福井県から CC BY で提供されている、<a href=http://www.pref.fukui.jp/ target=_blank>福井県オープンデータ</a>を使用しています。<br>
+利用可能店舗の一覧は、<a href=http://www.urasoe-premium.jp/shop/ target=_blank>浦添市プレミアム商品券事務局のホームページ</a>を御覧ください。<br>
+<br>
+浦添市プレミアム商品券利用可能店舗マップは、浦添市からから CC BY で提供されている、<a href=http://www.city.urasoe.lg.jp/categories/kubun/open_data/ target=_blank>浦添市オープンデータ</a>を使用しています。<br>
+またこのプログラムソースコードは、福井県がオープンソースで公開している<a href=http://www.pref.fukui.jp/doc/toukei-jouhou/opendata/apli.html target=_blank>福井県オープンイベントナビ</a>を使用しています。<br>
 <br>
 このヘルプは、タップまたはクリックで閉じます
 </div>

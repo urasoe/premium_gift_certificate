@@ -1,0 +1,2 @@
+# premium_gift_certificate
+浦添市プレミアム商品券利用可能店舗

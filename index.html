@@ -268,7 +268,8 @@ window.onload = function() {
 //  map.setZoom(11);
      
     loadData("restaurant", { iconfn: "icon_restaurant.png", fit: true });
-    loadData("super", { iconfn: "icon_super.png", fit: true });
+    loadData("super", { iconfn: "icon_super.png" });
+    loadData("drug", { iconfn: "icon_drug.png" });
 /*
     loadData("event", { iconfn: "icon_event.png" });
     loadData("shisetsu", { iconfn: "icon_facility.png" });
@@ -313,6 +314,9 @@ window.onload = function() {
     };
     get("btnsuper").onclick = function() {
         resizeIcon("super", true);
+    };
+    get("btndrug").onclick = function() {
+        resizeIcon("drug", true);
     };
 /*
     get("btnevent").onclick = function() {
@@ -709,6 +713,7 @@ body {
     <div class="btns">
         <img src="img/icon_restaurant.png" id="btnrestaurant">
         <img src="img/icon_super.png" id="btnsuper">
+        <img src="img/icon_drug.png" id="btndrug">
 <!--
         <img src="img/icon_event.png" id="btnevent">
         <img src="img/icon_soba.png" id="btnsoba">
@@ -736,6 +741,7 @@ body {
 <table class=helptbl>
 <tr><td><img class=helpicon src=img/icon_restaurant.png></td><td>飲食店を表示します<r></td></tr>
 <tr><td><img class=helpicon src=img/icon_super.png></td><td>スーパー、コンビニ、飲食料品店を表示します<r></td></tr>
+<tr><td><img class=helpicon src=img/icon_drug.png></td><td>ドラッグストア、化粧品店を表示します<r></td></tr>
 <tr><td><img class=helpicon src=img/icon_gps.png></td><td>地図を現在位置を中心に表示します<br>※GPSなどをONにしてご利用ください</td></tr>
 <tr><td><img class=helpicon src=img/icon_help.png></td><td>このヘルプを表示します</td></tr>
 </table>

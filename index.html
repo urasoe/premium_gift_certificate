@@ -74,8 +74,6 @@ var putIcons = function(itemset) {
         var item = items[i];
         var lat = item[nlat];
         var lng = item[nlng];
-//        if (lat.length == 0 || lng.length == 0 || lat > 40 || lat < 30)
-//            continue;
         if (lat.length == 0 || lng.length == 0)
             continue;
 /*         
@@ -381,14 +379,16 @@ window.onload = function() {
 var resizeMap = function() {
     var w = document.documentElement.clientWidth || window.innerWidth;
     var h = document.documentElement.clientHeight || window.innerHeight;
-    var gap = 40;
+    var gap = 30;
+/*
     if (w < 440 || h < 500)
         gap += 50;
     else if (w < 600)
         gap += 80;
     else
         gap += 100;
-    get("map").style.height = (h - gap) + "px";
+*/
+    get("map").style.height = (h - gap - document.getElementById("btns").clientHeight) + "px";
 };
 window.onresize = resizeMap;
  
@@ -718,7 +718,7 @@ body {
  
 <div id="main">
     <div id="map"></div>
-    <div class="btns">
+    <div class="btns" id="btns">
         <img src="img/icon_restaurant.png" id="btnrestaurant">
         <img src="img/icon_super.png" id="btnsuper">
         <img src="img/icon_drug.png" id="btndrug">

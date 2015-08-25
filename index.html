@@ -270,6 +270,11 @@ window.onload = function() {
     loadData("drug", { iconfn: "icon_drug.png" });
     loadData("home", { iconfn: "icon_home.png" });
     loadData("car", { iconfn: "icon_car.png" });
+    loadData("clothes", { iconfn: "icon_clothes.png" });
+    loadData("salon", { iconfn: "icon_salon.png" });
+    loadData("cleaning", { iconfn: "icon_cleaning.png" });
+    loadData("service", { iconfn: "icon_service.png" });
+    loadData("etc", { iconfn: "icon_etc.png" });
 /*
     loadData("event", { iconfn: "icon_event.png" });
     loadData("shisetsu", { iconfn: "icon_facility.png" });
@@ -323,6 +328,21 @@ window.onload = function() {
     };
     get("btncar").onclick = function() {
         resizeIcon("car", true);
+    };
+    get("btnclothes").onclick = function() {
+        resizeIcon("clothes", true);
+    };
+    get("btnsalon").onclick = function() {
+        resizeIcon("salon", true);
+    };
+    get("btncleaning").onclick = function() {
+        resizeIcon("cleaning", true);
+    };
+    get("btnservice").onclick = function() {
+        resizeIcon("service", true);
+    };
+    get("btnetc").onclick = function() {
+        resizeIcon("etc", true);
     };
 /*
     get("btnevent").onclick = function() {
@@ -724,6 +744,11 @@ body {
         <img src="img/icon_drug.png" id="btndrug">
         <img src="img/icon_home.png" id="btnhome">
         <img src="img/icon_car.png" id="btncar">
+        <img src="img/icon_clothes.png" id="btnclothes">
+        <img src="img/icon_salon.png" id="btnsalon">
+        <img src="img/icon_cleaning.png" id="btncleaning">
+        <img src="img/icon_service.png" id="btnservice">
+        <img src="img/icon_etc.png" id="btnetc">
 <!--
         <img src="img/icon_event.png" id="btnevent">
         <img src="img/icon_soba.png" id="btnsoba">
@@ -754,6 +779,11 @@ body {
 <tr><td><img class=helpicon src=img/icon_drug.png></td><td>ドラッグストア、化粧品店を表示します<r></td></tr>
 <tr><td><img class=helpicon src=img/icon_home.png></td><td>家電販売店、家具店、ホームセンターを表示します<r></td></tr>
 <tr><td><img class=helpicon src=img/icon_car.png></td><td>カー用品店、ガソリンスタンドを表示します<r></td></tr>
+<tr><td><img class=helpicon src=img/icon_clothes.png></td><td>衣料・身の回り品取扱店を表示します<r></td></tr>
+<tr><td><img class=helpicon src=img/icon_salon.png></td><td>理容・美容室を表示します<r></td></tr>
+<tr><td><img class=helpicon src=img/icon_cleaning.png></td><td>クリーニング店を表示します<r></td></tr>
+<tr><td><img class=helpicon src=img/icon_service.png></td><td>サービス業、旅行業を表示します<r></td></tr>
+<tr><td><img class=helpicon src=img/icon_etc.png></td><td>その他業種、その他小売業を表示します<r></td></tr>
 <tr><td><img class=helpicon src=img/icon_gps.png></td><td>地図を現在位置を中心に表示します<br>※GPSなどをONにしてご利用ください</td></tr>
 <tr><td><img class=helpicon src=img/icon_help.png></td><td>このヘルプを表示します</td></tr>
 </table>

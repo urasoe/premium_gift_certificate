@@ -71,6 +71,21 @@ var moveFacility = function(name) {
         }
     }
 };
+var moveShop = function(name) {
+    var items = data;
+    for (var i = 0; i < items.length; i++) {
+        var item = items[i];
+        var head = item.items[0];
+        for (var j = 1; j < item.items.length; j++) {
+            var name1 = getValueCSV("店舗名", head, item.items[j]);
+            if (name1 == name) {
+                var icon = item.items[j].icon;
+                icon.onclick.call(icon);
+                return;
+            }
+        }
+    }
+};
 var putIcons = function(itemset) {
     if (bounds == null)
         bounds = new LatLngBounds();
@@ -205,6 +220,35 @@ var putIcons = function(itemset) {
     if (itemset.fit)
         map.fitBounds(bounds);
 };
+
+var setList = function(name, itemset) {
+    var items = itemset.items;
+    var shopNameIndex = getTableIndex(items, "店舗名");
+    var categoryIndex = getTableIndex(items, "業種");
+
+    var divElement = document.createElement("div");
+    divElement.id = name;
+    divElement.className = "list";
+    var s = [];
+    s.push("<table class=listtbl>");
+    s.push("<tr><td class=header>店舗名</td><td class=header>業種</td></tr>");
+
+    for (var i = 1; i < items.length; i++) {
+        var item = items[i];
+        var shopName = item[shopNameIndex];
+        var category = item[categoryIndex];
+        if(shopName.length == 0)
+            continue;
+            
+        s.push("<tr onClick=\"javascript:moveShop('" + shopName + "')\"><td>" + shopName + "</td><td>" + category + "</td></tr>");
+    }
+    
+    s.push("</table>");
+    divElement.innerHTML = s;
+    
+    var listObject = document.getElementById("list");
+    listObject.appendChild(divElement);
+};
  
 var swapColumn = function(items, n, m) {
     for (var i = 0; i < items.length; i++) {
@@ -266,6 +310,7 @@ var loadData = function(name, itemset) {
         itemset.name = name;
         data.push(itemset);
         putIcons(itemset);
+        setList(name, itemset);
     };
     jsonp(BASE_URL_DATA + name + ".js");
 };
@@ -324,35 +369,61 @@ window.onload = function() {
                 map.fitBounds(bounds);
         }
     };
+    
+    var selectCategory = function(name) {
+        var listChildElements = document.getElementById("list").childNodes;
+        for (var i = 0; i < listChildElements.length; i++) {
+            var childElement = listChildElements[i];
+            if (childElement.nodeName != "DIV")
+                continue;
+            
+            if (childElement.id == name) {
+                document.getElementById("list").childNodes[i].style.display = "block";
+            } else {
+                document.getElementById("list").childNodes[i].style.display = "none";
+            }
+        }
+    };
+    
     get("btnrestaurant").onclick = function() {
         resizeIcon("restaurant", true);
+        selectCategory("restaurant");
     };
     get("btnsuper").onclick = function() {
         resizeIcon("super", true);
+        selectCategory("super");
     };
     get("btndrug").onclick = function() {
         resizeIcon("drug", true);
+        selectCategory("drug");
     };
     get("btnhome").onclick = function() {
         resizeIcon("home", true);
+        selectCategory("home");
     };
     get("btncar").onclick = function() {
         resizeIcon("car", true);
+        selectCategory("car");
     };
     get("btnclothes").onclick = function() {
         resizeIcon("clothes", true);
+        selectCategory("clothes");
     };
     get("btnsalon").onclick = function() {
         resizeIcon("salon", true);
+        selectCategory("salon");
     };
     get("btncleaning").onclick = function() {
         resizeIcon("cleaning", true);
+        selectCategory("cleaning");
     };
     get("btnservice").onclick = function() {
         resizeIcon("service", true);
+        selectCategory("service");
     };
     get("btnetc").onclick = function() {
         resizeIcon("etc", true);
+        selectCategory("etc");
     };
 /*
     get("btnevent").onclick = function() {
@@ -398,6 +469,12 @@ window.onload = function() {
             enableHighAccuracy: 1
         });
     };
+    get("btnlist").onclick = function() {
+        get("list").style.display = "block";
+    };
+    get("list").onclick = function() {
+        get("list").style.display = "none";
+    };
     get("btnhelp").onclick = function() {
         get("help").style.display = "block";
     };
@@ -424,7 +501,7 @@ window.onresize = resizeMap;
  
 // prevent scroll
 var preventScroll = function(e) {
-    if (get("help").style.display == "block")
+    if (get("help").style.display == "block" || get("list").style.display == "block")
         return;
     if (event.touches[0].target.tagName.toLowerCase() == "td") {
         return;
@@ -683,6 +760,39 @@ body {
     height: 100px;
     cursor: pointer;
 }
+#list {
+    display: none;
+    position: absolute;
+    top: 0px;
+    margin: 1%;
+    padding: 1%;
+    width: 94%;
+    height: 92%;
+    x-height: 500px;
+    border: #000000 5px solid;
+    background: white;
+    opacity: 0.95;
+    overflow: auto;
+}
+.header {
+    text-align: center;
+    background-color: #5383A7;
+    padding: 4px 0px 4px 0px;
+    color: white !important;
+    font-weight: bold;
+    text-decoration: none;
+}
+.listtbl {
+    border-collapse: collapse;
+    border: 1px solid gray;
+}
+.listtbl td {
+    padding: 4px;
+    border: 1px solid gray;
+}
+.list tr:nth-child(odd) {
+    background:#f0f0f0;
+}
 #help {
     display: none;
     position: absolute;
@@ -764,6 +874,7 @@ body {
         <img src="img/icon_soba.png" id="btnsoba">
         <img src="img/icon_wakasaji.png" id="btnwakasaji">
 -->
+        <img src="img/icon_list.png" id="btnlist">
         <img src="img/icon_gps.png" id="btngps">
         <img src="img/icon_help.png" id="btnhelp">
     </div>
@@ -801,9 +912,14 @@ body {
 利用可能店舗の一覧は、<a href=http://www.urasoe-premium.jp/shop/ target=_blank>浦添市プレミアム商品券事務局のホームページ</a>を御覧ください。<br>
 <br>
 浦添市プレミアム商品券利用可能店舗マップは、浦添市から CC BY で提供されている、<a href=http://www.city.urasoe.lg.jp/categories/kubun/open_data/ target=_blank>浦添市オープンデータ</a>を使用しています。<br>
-またこのプログラムソースコードは、福井県がオープンソースで公開している<a href=http://www.pref.fukui.jp/doc/toukei-jouhou/opendata/apli.html target=_blank>福井県オープンイベントナビ</a>を利用しています。<br>
+またこのプログラムソースコードは、福井県がオープンソースで公開している<a href=http://www.pref.fukui.jp/doc/toukei-jouhou/opendata/apli.html target=_blank>福井県オープンイベントナビ</a>を使用しています。<br>
 <br>
 このヘルプは、タップまたはクリックで閉じます
+</div>
+ 
+<div id="list" class="list">
+<span style="position:absolute;top:0px;right:4px;color:gray;font-weight:bold;font-size:170%;cursor:pointer"></span>
+<b>店舗リスト</b><br>
 </div>
  
 </body>

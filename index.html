@@ -374,7 +374,7 @@ window.onload = function() {
         var listChildElements = document.getElementById("list").childNodes;
         for (var i = 0; i < listChildElements.length; i++) {
             var childElement = listChildElements[i];
-            if (childElement.nodeName != "DIV")
+            if (childElement.nodeName != "DIV" || childElement.id == "listTitle")
                 continue;
             
             if (childElement.id == name) {
@@ -905,6 +905,7 @@ body {
 <tr><td><img class=helpicon src=img/icon_cleaning.png></td><td>クリーニング店を表示します<r></td></tr>
 <tr><td><img class=helpicon src=img/icon_service.png></td><td>サービス業、旅行業を表示します<r></td></tr>
 <tr><td><img class=helpicon src=img/icon_etc.png></td><td>その他業種、その他小売業を表示します<r></td></tr>
+<tr><td><img class=helpicon src=img/icon_list.png></td><td>店舗の一覧をリスト表示します。</br>アイコンで店舗のカテゴリを選んでいる場合は、選んだカテゴリの店舗だけ表示されます<r></td></tr>
 <tr><td><img class=helpicon src=img/icon_gps.png></td><td>地図を現在位置を中心に表示します<br>※GPSなどをONにしてご利用ください</td></tr>
 <tr><td><img class=helpicon src=img/icon_help.png></td><td>このヘルプを表示します</td></tr>
 </table>
@@ -918,6 +919,7 @@ body {
 </div>
  
 <div id="list" class="list">
+<div id ="listTitle" style="position:relative"><p style="position:fixed;background-color:#f0f0f0;right:50px;margin:0"><b>×閉じる</b></p></div>
 <span style="position:absolute;top:0px;right:4px;color:gray;font-weight:bold;font-size:170%;cursor:pointer"></span>
 <b>店舗リスト</b><br>
 </div>

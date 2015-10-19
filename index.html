@@ -481,6 +481,9 @@ window.onload = function() {
     get("help").onclick = function() {
         get("help").style.display = "none";
     };
+    get("info").onclick = function() {
+        get("info").style.display = "none";
+    };
     resizeMap();
 };
 var resizeMap = function() {
@@ -837,6 +840,24 @@ body {
     padding: 4px;
     border: 1px solid gray;
 }
+#info {
+    display: block;
+    position: absolute;
+    top: 0px;
+    margin: 1%;
+    padding: 1%;
+    width: 94%;
+    height: 92%;
+    x-height: 500px;
+    border: #FF0000 5px solid;
+    background: white;
+    opacity: 0.95;
+    overflow: auto;
+}
+.infodtl {
+    display:table-cell;
+    vertical-align:middle;
+}
 @media screen and (max-width: 600px) {
     .btns img {
         width: 80px;
@@ -919,6 +940,17 @@ body {
 またこのプログラムソースコードは、福井県がオープンソースで公開している<a href=http://www.pref.fukui.jp/doc/toukei-jouhou/opendata/apli.html target=_blank>福井県オープンイベントナビ</a>を使用しています。<br>
 <br>
 このヘルプは、タップまたはクリックで閉じます
+</div>
+ 
+<div id="info" class="info">
+<p style="infodtl">
+<center>
+商品券の利用期限は
+<h1>平成27年11月15日（日）まで！</h1>
+使い忘れがないようにご利用ください<br>
+<br><br><br>（タップまたはクリックで閉じる）
+</center>
+</p>
 </div>
  
 <div id="list" class="list">
